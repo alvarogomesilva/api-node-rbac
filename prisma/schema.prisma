@@ -12,9 +12,9 @@ model Account {
   name     String
   email    String @unique
   password String
-  roleId String @db.Uuid @map("role_id")
+  roleId   String @map("role_id") @db.Uuid
 
-  role Role   @relation(fields: [roleId], references: [id])
+  role Role @relation(fields: [roleId], references: [id])
 
   @@map("accounts")
 }
@@ -28,9 +28,18 @@ model Role {
 }
 
 model Permissions {
-  id String @id @default(uuid()) @db.Uuid
+  id   String @id @default(uuid()) @db.Uuid
   name String
   code String @unique
 
   @@map("permissions")
+}
+
+model RolePermission {
+  roleId         String @map("role_id") @db.Uuid
+  permissionCode String @map("permission_code")
+
+  @@id([roleId, permissionCode])
+
+  @@map("roles_permissions")
 }
