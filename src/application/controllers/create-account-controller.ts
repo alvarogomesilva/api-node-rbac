@@ -9,6 +9,7 @@ const schema = z.object({
   name: z.string().min(2),
   email: z.string().email().min(1),
   password: z.string().min(8),
+  roleId: z.string()
 });
 
 export class CreateAccountController implements IController {
@@ -16,9 +17,9 @@ export class CreateAccountController implements IController {
 
   async handle({ body }: IRequest): Promise<IResponse> {
     try {
-      const { email, name, password } = schema.parse(body);
+      const { email, name, password, roleId } = schema.parse(body);
 
-      await this.createAccountUseCase.execute({ email, name, password });
+      await this.createAccountUseCase.execute({ email, name, password, roleId });
 
       return {
         statusCode: 204,

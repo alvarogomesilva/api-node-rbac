@@ -30,7 +30,7 @@ export class AuthenticationMiddleware implements IMiddleware {
         data: {
           account: {
             id: payload.sub,
-            role: payload.role,
+            role: payload.roleId,
           },
         },
       };

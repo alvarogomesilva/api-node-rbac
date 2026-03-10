@@ -3,7 +3,7 @@ import { sign } from 'jsonwebtoken';
 
 import { env } from '../config/env';
 import { InvalidCredentials } from '../errors/invalid-credencials';
-import { prismaClient } from '../libs/prisma-client';
+import { prismaClient } from '../lib/prisma-client';
 
 interface Input {
   email: string;
