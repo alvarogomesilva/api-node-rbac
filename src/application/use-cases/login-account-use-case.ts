@@ -3,7 +3,7 @@ import { sign } from 'jsonwebtoken';
 
 import { env } from '../config/env';
 import { InvalidCredentials } from '../errors/invalid-credencials';
-import { prismaClient } from '../lib/prisma-client';
+import { prisma } from '../lib/prisma-client';
 
 interface Input {
   email: string;
@@ -17,7 +17,7 @@ interface Output {
 export class LoginAccountUseCase {
   async execute({ email, password }: Input): Promise<Output> {
 
-    const account = await prismaClient.account.findUnique({
+    const account = await prisma.account.findUnique({
       where: { email },
     });
 
@@ -34,7 +34,7 @@ export class LoginAccountUseCase {
     const accessToken = sign(
       {
         sub: account.id,
-        role: account.role,
+        role: account.roleId,
       },
       env.jwtSecret,
       { expiresIn: '1d' },
