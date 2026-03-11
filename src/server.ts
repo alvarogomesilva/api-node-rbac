@@ -14,8 +14,8 @@ const app = express();
 
 app.use(express.json());
 
-app.post('/sign-up', routeAdapter(makeLoginAccountController()));
-app.post('/sign-in', routeAdapter(makeCreateAccountController()));
+app.post('/sign-up', routeAdapter(makeCreateAccountController()));
+app.post('/sign-in', routeAdapter(makeLoginAccountController()));
 
 app.get('/leads',
   middlewareAdapter(makeAuthenticationMiddleware()),
