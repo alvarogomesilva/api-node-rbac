@@ -5,7 +5,7 @@ interface Input {
 }
 
 interface Output {
-  permissionsCode: string[];
+  permissionsCodes: string[];
 }
 
 export class GetRolePermissionUseCase {
@@ -17,11 +17,11 @@ export class GetRolePermissionUseCase {
         }
     })
 
-    const permissionsCode = rolesPermissions.map((rolesPermissions) => 
+    const permissionsCodes = rolesPermissions.map((rolesPermissions) => 
         rolesPermissions.permissionCode
     )
 
-    return { permissionsCode }
+    return { permissionsCodes }
    
   }
 }

@@ -12,7 +12,7 @@ export class AuthenticationMiddleware implements IMiddleware {
       return {
         statusCode: 401,
         body: {
-          error: 'Invalid access token.',
+          error: 'Invalid access token. (authenticate)',
         },
       };
     }
